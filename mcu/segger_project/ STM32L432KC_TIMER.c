@@ -18,13 +18,12 @@ void enableTimer16() { //used for delay
   TIMER16->TIMx_ARR = 0xffff;
 }
 
-void enableTimer15() { //used for PWM
-  //Pulse Width Modulation mode enabled
+void enableTimer15(){  //Pulse Width Modulation mode enabled
 
   //TODO: set clock?
   
   // prescale register, TIMx_PSC
-  //TIMER15->TIMx_PSC |= (0b1000 << 0); //TODO: set prescaler to 8. 10MHz clock?
+  //TIMER15->TIMx_PSC |= (0b1000 << 0); //TODO: set prescaler to 800. 100kHz clock?
   TIMER15->TIMx_PSC = 799;
   //configure CCMx as output
   TIMER15->TIMx_CCMR1 |= (0b00 << 0); //CC1 channel configured as out
@@ -50,7 +49,7 @@ void enableTimer15() { //used for PWM
   //TODO: initialize Duty Cycle to anything?
 
   //OCx output. set active high?
-  TIMER15->TIMx_CCER |= (1 << 0); //capture compare 1 output enabled
+  TIMER15->TIMx_CCER |= (1 << 0); //OC1 signal is output on corresponding input pin
   TIMER15->TIMx_BDTR |= (1 << 15); //OC output enabled
 }
 
@@ -89,4 +88,4 @@ void pitch_set( uint32_t pitch){
   //update generation
   TIMER15->TIMx_EGR |= (1 << 0);
 
-{
+}

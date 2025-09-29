@@ -8,6 +8,7 @@
 File    : main.c
 Purpose : Lab 4 Main Code
 Author  : Wava Chan
+Email   : wchan@g.hmc.edu
 Date    : September 2025
 
 */
@@ -136,6 +137,7 @@ const int fur_elise[][2] = {
 {440,	500},
 {  0,	0}};
 
+#define PIN 8 //PA2. Listed alternate functions TIM15_CH1. A7
 
 
 /*********************************************************************
@@ -153,21 +155,32 @@ int main(void) {
   RCC->APB2ENR |= (1 << 17); //enable TIM16 clock. pg 228
   RCC->APB2ENR |= (1 << 16); //enable TIM15 clock. pg 228
   //TODO: what does enabling these clocks do?
+
   enableTimer15();
   enableTimer16();
    
-  //configure pins 
+  //configure pins
+  pinMode(PIN, GPIO_ALT); //Can i configure my pin to just output TIM15_CH1 instead of writing to the pin?
+  //configure as output in MODER
+  GPIO->AFRH |= (0b1110 << 0); //connect pin 8 I/O to AF14 (TIM15_CH1) in GPIOx_AFRH register
+  //select type (OTYPER), pullup/pulldown(PUPDR), & output speed (OSPEEDER)
 
-  //loop thru each line in fur_elise
-    //write frequency to timer 15
-    // delay by # of milliseconds
-  int size = sizeof(fur_elise)/sizeof(fur_elise[0]);
+
+  int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
   for(int i = 0; i < size; i = i + 1) {
-    pitch_set(fur_elise[i][0]);
-    //write timer15 to desired pin
-    delay_millis(fur_elise[i][1]);
+    pitch_set(fur_elise[i][0]); //write frequency to timer 15
+    delay_millis(fur_elise[i][1]); // delay by # of milliseconds
   }
+
+  // play jackie and wilson
 
 }
 
 /*************************** End of file ****************************/
+/*
+TODO: my questions
+output capture module. describe in pages abt TIm15/16. pWM mode
+3. where is my clock (CK_INT) coming from? is it confirguable inside TIM15/16? Do I configure it through RCC instead? Is CK_INT the same as SYS_CLK? 
+  CK_INT is SYS_CLK put through 2 prescalers
+4. what frequency is CK_INT? Is there another way i should be calculating my PSC and ARR? 
+*/ 
