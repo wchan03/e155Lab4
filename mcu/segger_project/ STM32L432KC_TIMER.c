@@ -7,7 +7,7 @@
 void enableTimer16(void) { //used for delay
 
   // configure counter 
-  TIMER16->TIMx_CR1 |= (1 << 7); //ARR is enabled
+  //TIMER16->TIMx_CR1 |= (1 << 7); //ARR is enabled
   TIMER16->TIMx_CR1 |= (1 << 0); //counter enabled
   TIMER16->TIMx_CNT = 0; //set counter to 0
 
@@ -28,13 +28,11 @@ void enableTimer15(void){  //Pulse Width Modulation mode enabled
   // prescale register, TIMx_PSC
   //TIMER15->TIMx_PSC |= (0b1000 << 0); //TODO: set prescaler to 800. 100kHz clock?
   TIMER15->TIMx_PSC = 39;
-  TIMER15->TIMx_CCMR1 |= (0b00 << 0); //CC1 channel configured as output
+  TIMER15->TIMx_CCMR1 &= ~(0b00 << 0); //CC1 channel configured as output
 
   //write PWM mode 1. Differnce between mode 1 and mode 2????
   TIMER15->TIMx_CCMR1 &= ~(0b1111 << 4); //Clear then set OCxM bits in TIMx_CCMRx
   TIMER15->TIMx_CCMR1 |= (0b0110 << 4); //0111 for mode 2
-
-  
   TIMER15->TIMx_CCMR1 |= (1 << 3); //enable preload reg. setting OCxPE bit in TIMx_CCMRx
 
   
@@ -64,13 +62,13 @@ void delay_millis(uint32_t ms){
   //apply at ARR 
   TIMER16->TIMx_ARR = (100*ms);
   //reset status register 
-  //TIMER16->TIMx_SR |= (0 << 0); //TODO: does this work?
-  TIMER16->TIMx_SR &= !(1 << 0);
+  TIMER16->TIMx_SR &= (0 << 0); //TODO: does this work?
+  //TIMER16->TIMx_SR &= !(1 << 0);
 
   //set counter to 0 
   TIMER16->TIMx_CNT = 0;
   
-  while((TIMER16->TIMx_SR & 1) != 1) { //wait for flag
+  while((TIMER16->TIMx_SR & 0b1) != 1) { //wait for flag
     __asm("nop");
   }
 }
