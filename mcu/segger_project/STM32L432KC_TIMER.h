@@ -34,11 +34,11 @@ typedef struct {
   volatile uint32_t TIMx_BDTR; //Break and Dead-time 
   volatile uint32_t TIMx_DCR; // DMA Control
   volatile uint32_t TIMx_DMAR; // DMA address for full transfer
-  volatile uint16_t TIMx_OR1; //Option Reg. 1
+  volatile uint32_t TIMx_OR1; //Option Reg. 1
   uint32_t R6_TIMx_OR1; // Reserved
   uint32_t R7_TIMx_OR1; // Reserved
   uint32_t R8_TIMx_OR1; // Reserved
-  volatile uint16_t TIMx_OR2; //Option Reg. 2
+  volatile uint32_t TIMx_OR2; //Option Reg. 2
 } TIMER_TypeDef;
 
 #define TIMER16 ((TIMER_TypeDef *) TIMER_16_BASE)

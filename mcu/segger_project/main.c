@@ -160,11 +160,8 @@ int main(void) {
   enableTimer16();
    
   //configure pins
-  pinMode(PIN, GPIO_ALT); //Can i configure my pin to just output TIM15_CH1 instead of writing to the pin?
-  //configure as output in MODER
-  GPIO->AFRH |= (0b1110 << 0); //connect pin 8 I/O to AF14 (TIM15_CH1) in GPIOx_AFRH register
-  //select type (OTYPER), pullup/pulldown(PUPDR), & output speed (OSPEEDER)
-
+  pinMode(PIN, GPIO_ALT);
+  GPIO->AFRL |= (0b1110 << 8); //connect pin A7/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
 
   int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
   for(int i = 0; i < size; i = i + 1) {
@@ -185,4 +182,5 @@ output capture module. describe in pages abt TIm15/16. pWM mode
 4. what frequency is CK_INT? Is there another way i should be calculating my PSC and ARR? 
 5. check that wave is what you expect before building speaker
 6. Where is my power supply coming from?
+7. does my order matter?
 */ 
