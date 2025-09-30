@@ -3,7 +3,7 @@
 
 #include "STM32L432KC_TIMER.h"
 
-void enableTimer16() { //used for delay
+void enableTimer16(void) { //used for delay
 
   // configure counter 
   TIMER16->TIMx_CR1 |= (1 << 7); //ARR is enabled
@@ -12,19 +12,19 @@ void enableTimer16() { //used for delay
   TIMER16->TIMx_CNT = 0; //set counter to 0
 
   // prescale register
-  TIMER16->TIMx_PSC = 799; //TODO: set prescaler to 80. 100kHz clock?
+  TIMER16->TIMx_PSC = 79; //TODO: set prescaler to 80. 100kHz clock?
 
   //set ARR to max value
   TIMER16->TIMx_ARR = 0xffff;
 }
 
-void enableTimer15(){  //Pulse Width Modulation mode enabled
+void enableTimer15(void){  //Pulse Width Modulation mode enabled
 
   //TODO: set clock?
   
   // prescale register, TIMx_PSC
   //TIMER15->TIMx_PSC |= (0b1000 << 0); //TODO: set prescaler to 800. 100kHz clock?
-  TIMER15->TIMx_PSC = 799;
+  TIMER15->TIMx_PSC = 79;
   //configure CCMx as output
   TIMER15->TIMx_CCMR1 |= (0b00 << 0); //CC1 channel configured as out
 
@@ -70,12 +70,12 @@ void delay_millis(uint32_t ms){
   //reset status register 
   TIMER16->TIMx_SR |= (0 << 0); //TODO: does this work?
   
-  while(TIMER16->TIMx_SR != 1) { //wait for flag
+  while((TIMER16->TIMx_SR& 1) != 1) { //wait for flag
     __asm("nop");
   }
 }
 
-void pitch_set( uint32_t pitch){
+void pitch_set(uint32_t pitch){
   //set PWM to desired frequency 
 
   // set values of TIMx_ARR register

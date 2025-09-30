@@ -46,9 +46,9 @@ typedef struct {
 
 //FUNCTIONS
 
-void enableTimer15();
+void enableTimer15(void);
 
-void enableTimer16();
+void enableTimer16(void);
 
 void delay_millis(uint32_t ms);
 

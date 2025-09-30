@@ -154,7 +154,7 @@ int main(void) {
 
   RCC->APB2ENR |= (1 << 17); //enable TIM16 clock. pg 228
   RCC->APB2ENR |= (1 << 16); //enable TIM15 clock. pg 228
-  //TODO: what does enabling these clocks do?
+  RCC->AHB2ENR |= (1 << 0); //enable GPIOA clk pg. 223
 
   enableTimer15();
   enableTimer16();
@@ -183,4 +183,6 @@ output capture module. describe in pages abt TIm15/16. pWM mode
 3. where is my clock (CK_INT) coming from? is it confirguable inside TIM15/16? Do I configure it through RCC instead? Is CK_INT the same as SYS_CLK? 
   CK_INT is SYS_CLK put through 2 prescalers
 4. what frequency is CK_INT? Is there another way i should be calculating my PSC and ARR? 
+5. check that wave is what you expect before building speaker
+6. Where is my power supply coming from?
 */ 
