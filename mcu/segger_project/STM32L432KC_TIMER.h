@@ -46,12 +46,9 @@ typedef struct {
 
 //FUNCTIONS
 
-void enableTimer15(void);
-
-void enableTimer16(void);
-
-void delay_millis(uint32_t ms);
-
-void pitch_set(uint32_t pitch);
+void enablePWMTimer(TIMER_TypeDef * TIMERx);
+void enableDelayTimer(TIMER_TypeDef * TIMERx);
+void delay_millis(TIMER_TypeDef * TIMERx, uint32_t ms);
+void pitch_set(TIMER_TypeDef * TIMERx, uint32_t pitch);
 
 #endif

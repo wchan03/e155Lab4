@@ -20,6 +20,89 @@ Date    : September 2025
 #include "lib/STM32L432KC_RCC.h"
 #include "STM32L432KC_TIMER.h"
 
+
+//my code
+const int jackie_wilson[][2] = {
+
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 125},
+{233, 125},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+
+
+
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+
+
+{349, 125},
+{349, 250},
+{466, 250},
+{311, 250},
+{311, 250},
+{311, 125},
+{277, 125},
+{311, 250},
+
+
+{311, 250},
+{277, 250},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 500},
+{0, 0}
+};
 /*
 LAB 4 STARTER CODE-- provided by E155
 Tune: Fur Elise
@@ -138,6 +221,8 @@ const int fur_elise[][2] = {
 {  0,	0}};
 
 #define PIN 2 //PA2. Listed alternate functions TIM15_CH1. A7
+#define PWMTimer TIMER15
+#define DelayTimer TIMER16
 
 
 /*********************************************************************
@@ -156,8 +241,8 @@ int main(void) {
   RCC->APB2ENR |= (1 << 16); //enable TIM15 clock. pg 228
   RCC->AHB2ENR |= (1 << 0); //enable GPIOA clk pg. 223
 
-  enableTimer15();
-  enableTimer16();
+  enableDelayTimer(DelayTimer);
+  enablePWMTimer(PWMTimer);
    
   //configure pins
   pinMode(2, 2);
@@ -166,15 +251,22 @@ int main(void) {
   //GPIO->ODR  |=
   
   int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
-  while(1) {
+  //while(1) {
   for(int i = 0; i < size; i = i + 1) {
-    pitch_set(fur_elise[i][0]); //write frequency to timer 15
-    delay_millis(fur_elise[i][1]); // delay by # of milliseconds
-  }
+    pitch_set(PWMTimer, fur_elise[i][0]); //write frequency to timer 15
+    delay_millis(DelayTimer, fur_elise[i][1]); // delay by # of milliseconds
+ // }
+ pitch_set(PWMTimer, 0);
+  delay_millis(DelayTimer, 500);
+
   }
 
   // play jackie and wilson
-
+  int size2 = sizeof(jackie_wilson)/sizeof(jackie_wilson[0]);
+  for(int i = 0; i < 0; i = i + 1) {
+    pitch_set(PWMTimer, jackie_wilson[i][0]);
+    delay_millis(DelayTimer, jackie_wilson[i][1]);
+  }
 }
 
 /*************************** End of file ****************************/
