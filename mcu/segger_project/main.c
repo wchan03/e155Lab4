@@ -219,8 +219,8 @@ const int fur_elise[][2] = {
 {494,	125},
 {440,	500},
 {  0,	0}};
-
-#define PIN 2 //PA2. Listed alternate functions TIM15_CH1. A7
+#define PIN 2 //for PWM = timer 15
+//#define PIN 6 //PA2. Listed alternate functions TIM15_CH1. A7
 #define PWMTimer TIMER15
 #define DelayTimer TIMER16
 
@@ -243,23 +243,33 @@ int main(void) {
 
   enableDelayTimer(DelayTimer);
   enablePWMTimer(PWMTimer);
+  pinMode(PIN, GPIO_OUTPUT);
+  while(1){
+    //togglePin(PIN);
+    digitalWrite(PIN, 0);
+    delay_millis(DelayTimer, 500);
+    digitalWrite(PIN, 1);
+   delay_millis(DelayTimer, 500);
+  }
+   
    
   //configure pins
-  pinMode(2, 2);
-  // GPIO->AFRL |= (0b1110 << 8);
-  GPIO->AFRL |= (14 << 8); //connect pin A7?/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
-  //GPIO->ODR  |=
+  pinMode(PIN, GPIO_ALT);
+  GPIO->AFRL |= (14 << (PIN*4)); //connect pin A7?/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
+  while(0){
+  pitch_set(PWMTimer, 330); //NOT getting a square wave
+  }
   
   int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
   //while(1) {
   for(int i = 0; i < size; i = i + 1) {
     pitch_set(PWMTimer, fur_elise[i][0]); //write frequency to timer 15
     delay_millis(DelayTimer, fur_elise[i][1]); // delay by # of milliseconds
- // }
+ }
  pitch_set(PWMTimer, 0);
   delay_millis(DelayTimer, 500);
 
-  }
+  //}
 
   // play jackie and wilson
   int size2 = sizeof(jackie_wilson)/sizeof(jackie_wilson[0]);
@@ -267,6 +277,8 @@ int main(void) {
     pitch_set(PWMTimer, jackie_wilson[i][0]);
     delay_millis(DelayTimer, jackie_wilson[i][1]);
   }
+
+  
 }
 
 /*************************** End of file ****************************/
