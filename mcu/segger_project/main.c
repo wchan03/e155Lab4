@@ -137,7 +137,7 @@ const int fur_elise[][2] = {
 {440,	500},
 {  0,	0}};
 
-#define PIN 8 //PA2. Listed alternate functions TIM15_CH1. A7
+#define PIN 2 //PA2. Listed alternate functions TIM15_CH1. A7
 
 
 /*********************************************************************
@@ -160,13 +160,17 @@ int main(void) {
   enableTimer16();
    
   //configure pins
-  pinMode(PIN, GPIO_ALT);
-  GPIO->AFRL |= (0b1110 << 8); //connect pin A7/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
-
+  pinMode(2, 2);
+  // GPIO->AFRL |= (0b1110 << 8);
+  GPIO->AFRL |= (14 << 8); //connect pin A7?/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
+  //GPIO->ODR  |=
+  
   int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
+  while(1) {
   for(int i = 0; i < size; i = i + 1) {
     pitch_set(fur_elise[i][0]); //write frequency to timer 15
     delay_millis(fur_elise[i][1]); // delay by # of milliseconds
+  }
   }
 
   // play jackie and wilson

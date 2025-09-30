@@ -20,7 +20,7 @@ typedef struct {
   volatile uint32_t TIMx_DIER; //! DMA/interrupt enable register
   volatile uint32_t TIMx_SR; //! Status
   volatile uint32_t TIMx_EGR; //! Event Generation
-  volatile uint16_t TIMx_CCMR1; // capture/compare mode reg. 1, output compare mode
+  volatile uint32_t TIMx_CCMR1; // capture/compare mode reg. 1, output compare mode
   uint32_t R2_TIMx_CCMR1; // capture/compare reserved
   volatile uint32_t TIMx_CCER; //capture/compare enable
   volatile uint32_t TIMx_CNT; // Counter
