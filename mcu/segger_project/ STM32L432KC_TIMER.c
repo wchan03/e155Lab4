@@ -21,20 +21,15 @@ void enableDelayTimer(TIMER_TypeDef * TIMERx) { //used for delay
 
 void enablePWMTimer(TIMER_TypeDef * TIMERx){  //Pulse Width Modulation mode enabled //used to be timer15
 
-  //TODO: does order matter?
-  // prescale register, TIMx_PSC
-  //TIMER15->TIMx_PSC |= (0b1000 << 0); //TODO: set prescaler to 800. 100kHz clock?
-  TIMERx->TIMx_PSC = 799;
+  TIMERx->TIMx_PSC = 799; // prescale register, TIMx_PSC
 
-   //write PWM mode 1. Differnce between mode 1 and mode 2????
-  //TIMER15->TIMx_CCMR1 &= ~(0b1111 << 4); //Clear then set OCxM bits in TIMx_CCMRx
-  TIMERx->TIMx_CCMR1 |= (1 << 6); //0111 for mode 2
+  //write PWM mode 1
+  TIMERx->TIMx_CCMR1 |= (1 << 6); 
   TIMERx->TIMx_CCMR1 |= (1 << 5);
   TIMERx->TIMx_CCMR1 &= ~(1 << 4); //OCxM set to 110
   TIMERx->TIMx_CCMR1 |= (1 << 3); //enable preload reg. setting OCxPE bit in TIMx_CCMRx
 
   TIMERx->TIMx_CCMR1 &= ~(0b11 << 0); //CC1 channel configured as output
-  ///disable slave select???
   TIMERx->TIMx_CR1 |= (1 << 7); //auto-reload preload reg. by setting ARPE bit in TIMx_CR1 reg.
   TIMERx->TIMx_CR1 |= (1 << 0); //enable counter CEN
 
@@ -45,13 +40,12 @@ void enablePWMTimer(TIMER_TypeDef * TIMERx){  //Pulse Width Modulation mode enab
 
   TIMERx->TIMx_EGR |= (1 << 0); //initialize all registers by setting UG bit in TIMx_EGR reg
 
-  //TIMERx->TIMx_CR1 |= (1 << 0); //TODO: moved enable counter CEN
 }
 
 
 
-void delay_millis(TIMER_TypeDef * TIMERx, uint32_t ms){
-  //play for desired amount of time. AKA count to ms amount
+void delay_millis(TIMER_TypeDef * TIMERx, uint32_t ms){  //play for desired amount of time. AKA count to ms amount
+
   //generate update event
   if(ms == 0) return;
   TIMERx->TIMx_EGR |= (1 << 0);

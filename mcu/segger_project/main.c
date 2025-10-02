@@ -208,6 +208,255 @@ const int fur_elise[][2] = {
 {494,	125},
 {440,	500}
 };
+
+const int combined[][2] = {
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 125},
+{233, 125},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{466, 250},
+{311, 250},
+{311, 250},
+{311, 125},
+{277, 125},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 500},
+//start fur elise
+{659,	125},
+{623,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{494,	125},
+{587,	125},
+{523,	125},
+{440,	250},
+{  0,	125},
+{262,	125},
+{330,	125},
+{440,	125},
+{494,	250},
+{  0,	125},
+{330,	125},
+{416,	125},
+{494,	125},
+{523,	250},
+{  0,	125},
+{330,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{494,	125},
+{587,	125},
+{523,	125},
+{440,	250},
+{  0,	125},
+{262,	125},
+{330,	125},
+{440,	125},
+{494,	250},
+{  0,	125},
+{330,	125},
+{523,	125},
+{494,	125},
+{440,	250},
+{  0,	125},
+{494,	125},
+{523,	125},
+{587,	125},
+{659,	375},
+{392,	125},
+{699,	125},
+{659,	125},
+{587,	375},
+{349,	125},
+{659,	125},
+{587,	125},
+{523,	375},
+{330,	125},
+{587,	125},
+{523,	125},
+{494,	250},
+{  0,	125},
+{330,	125},
+{659,	125},
+{  0,	250},
+{659,	125},
+{1319,	125},
+{  0,	250},
+{623,	125},
+{659,	125},
+{  0,	250},
+{623,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{494,	125},
+{587,	125},
+{523,	125},
+{440,	250},
+{  0,	125},
+{262,	125},
+{330,	125},
+{440,	125},
+{494,	250},
+{  0,	125},
+{330,	125},
+{416,	125},
+{494,	125},
+{523,	250},
+{  0,	125},
+{330,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{623,	125},
+{659,	125},
+{494,	125},
+{587,	125},
+{523,	125},
+{440,	250},
+{  0,	125},
+{262,	125},
+{330,	125},
+{440,	125},
+{494,	250},
+{  0,	125},
+{330,	125},
+{523,	125},
+{494,	125},
+{440,	500},
+//start jackie and wilson
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 125},
+{233, 125},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{392, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 250},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 125},
+{349, 125},
+{349, 250},
+{466, 250},
+{311, 250},
+{311, 250},
+{311, 125},
+{277, 125},
+{311, 250},
+{311, 250},
+{277, 250},
+{233, 125},
+{233, 125},
+{277, 250},
+{311, 125},
+{277, 125},
+{311, 125},
+{311, 125},
+{277, 500},
+};
 #define PIN 2 //for PWM = timer 15
 //#define PIN 6 //PA2. Listed alternate functions TIM15_CH1. A7
 #define PWMTimer TIMER15
@@ -233,78 +482,31 @@ int main(void) {
 
   //configure pins
   pinMode(PIN, GPIO_ALT);
-  GPIO->AFRL |= (14 << (PIN*4)); //connect pin A7?/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
+  GPIO->AFRL |= (14 << (PIN*4)); //connect pin A7/PA2 I/O to AF14 (TIM15_CH1) in GPIOx_AFRL register
 
 
   enableDelayTimer(DelayTimer); //delay is working 
   enablePWMTimer(PWMTimer);
   
   
-  //testing delay
-  //pinMode(PIN, GPIO_OUTPUT);
-  while(0){
-    //togglePin(PIN);
-    digitalWrite(PIN, 0);
-    delay_millis(DelayTimer, 250); //base level, 50Hz, period of 2ms
-    digitalWrite(PIN, 1);
-   delay_millis(DelayTimer, 250);
-  }
-  
-   
-   
- 
-  while(0){
-    pitch_set(PWMTimer, 375);
-    delay_millis(DelayTimer, 250);
-
-    pitch_set(PWMTimer, 623);
-    delay_millis(DelayTimer, 250);
-
-    pitch_set(PWMTimer, 375);
-    delay_millis(DelayTimer, 250);
-    
-    pitch_set(PWMTimer, 623);
-    delay_millis(DelayTimer, 250);
-
-    //pitch_set(PWMTimer, 500);
-    //delay_millis(DelayTimer, 50000);
-
-
-    
-  }
-  
-  
   int size = sizeof(fur_elise)/sizeof(fur_elise[0]); //loop thru each line in fur_elise
-  while(1) {
+
   for(int i = 0; i < size; i = i + 1) {
     pitch_set(PWMTimer, fur_elise[i][0]); //write frequency to timer 15
     delay_millis(DelayTimer, fur_elise[i][1]); // delay by # of milliseconds
+    pitch_set(PWMTimer, 0);
   }
-  //pitch_set(PWMTimer, 0);
-  delay_millis(DelayTimer, 500);
-  //COMBINE INTO ONE BIGSONG
 
-  
+  delay_millis(DelayTimer, 500);
 
   // play jackie and wilson
   int size2 = sizeof(jackie_wilson)/sizeof(jackie_wilson[0]);
   for(int i = 0; i < size2; i = i + 1) {
     pitch_set(PWMTimer, jackie_wilson[i][0]);
     delay_millis(DelayTimer, jackie_wilson[i][1]);
+    pitch_set(PWMTimer, 0);
   }
-  }
-
   
 }
 
 /*************************** End of file ****************************/
-/*
-TODO: my questions
-output capture module. describe in pages abt TIm15/16. pWM mode
-3. where is my clock (CK_INT) coming from? is it confirguable inside TIM15/16? Do I configure it through RCC instead? Is CK_INT the same as SYS_CLK? 
-  CK_INT is SYS_CLK put through 2 prescalers
-4. what frequency is CK_INT? Is there another way i should be calculating my PSC and ARR? 
-5. check that wave is what you expect before building speaker
-6. Where is my power supply coming from?
-7. does my order matter?
-*/ 
