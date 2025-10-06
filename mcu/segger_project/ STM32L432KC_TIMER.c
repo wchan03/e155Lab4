@@ -7,7 +7,7 @@
 void enableDelayTimer(TIMER_TypeDef * TIMERx) { //used for delay
 
   // prescale register
-  TIMERx->TIMx_PSC = 799; //TODO: set prescaler to 80. 100kHz clock?
+  TIMERx->TIMx_PSC = 799; 
   
   //update generation
   TIMERx->TIMx_EGR |= (1 << 0);
@@ -45,24 +45,30 @@ void enablePWMTimer(TIMER_TypeDef * TIMERx){  //Pulse Width Modulation mode enab
 
 
 void delay_millis(TIMER_TypeDef * TIMERx, uint32_t ms){  //play for desired amount of time. AKA count to ms amount
+  
+
+  //convert ms to cycles- each cycle is 0.1 ms, so multiply ms by 100 before adding into counter
+  //apply at ARR 
+  TIMERx->TIMx_ARR = (0);
+  TIMERx->TIMx_ARR = (100*ms);
 
   //generate update event
-  if(ms == 0) return;
+  //if(ms == 0) return;
   TIMERx->TIMx_EGR |= (1 << 0);
   TIMERx->TIMx_CR1 |= (1<<0);
 
-  //convert ms to cycles- each cycle is 0.1 ms, so multiply ms by 1000 before adding into counter
-  //apply at ARR 
-  TIMERx->TIMx_ARR = (100*ms); //at input 500 (ARR->50,000), runs for 102ms //when ms = 1, runs at 4.85kHz. each cycle is 0.
-  //reset status register 
-  //TIMERx->TIMx_SR &= ~(1 << 1); //TODO: does this work?
-  TIMERx->TIMx_SR &= ~(1 << 0); 
   //set counter to 0 
   TIMERx->TIMx_CNT = 0;  
+
+  //reset status register 
+  TIMERx->TIMx_SR &= ~(1 << 0); 
+
   while((TIMERx->TIMx_SR & 0b1) != 1){} //wait for flag
   //while(TIMERx->TIMx_SR != 2){}
 
   TIMERx->TIMx_CR1 &= ~(1 << 0);
+
+
 }
 
 void pitch_set(TIMER_TypeDef * TIMERx, uint32_t pitch){ //TIM15
@@ -72,7 +78,7 @@ void pitch_set(TIMER_TypeDef * TIMERx, uint32_t pitch){ //TIM15
   // pitch is in Hz, clock is in 100kHz
   if(pitch == 0) {
     TIMERx->TIMx_CCR1 = 0;
-    TIMERx->TIMx_ARR = 1;
+    TIMERx->TIMx_ARR = 2; 
     TIMERx->TIMx_EGR |= (1 << 0);}
   else { 
     TIMERx->TIMx_ARR = 100000/pitch;
